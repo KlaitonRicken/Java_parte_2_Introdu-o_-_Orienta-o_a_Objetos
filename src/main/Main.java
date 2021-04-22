@@ -3,63 +3,54 @@ package main;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		testandoReferencia();
-		
-		
+		criaContas();
+		System.out.println("\nTotal conta: " + Conta.getTotal());	
 	}
 	
-	public static void testandoReferencia() {
-		Conta conta = new Conta();
-		conta.saldo = 200;
+	public static void criaContas() {
+		//Criando Cliente
+		Cliente cliente = new Cliente();
+		cliente.setNome("Klaiton Ricken");
+		cliente.setCpf(38457204);
+		cliente.setProfissao("dev");
 		
-		System.out.println(conta.saldo + " R$");
+		//Criando Conta
+		Conta conta = new Conta(43,3456,cliente);
+		conta.setSaldo(200);
 		
-		conta.saldo += 100;
+		System.out.println(conta.getSaldo() + " R$");
 		
-		System.out.println(conta.saldo + " R$");
+		conta.setSaldo(100);
 		
-		Conta conta2 = new Conta();
+		System.out.println(conta.getSaldo() + " R$");
 		
-		conta2.saldo = 100;
+		Conta conta2 = new Conta(25,53,cliente);
 		
-		System.out.println(conta2.saldo + " R$");
+		conta2.setSaldo(300);
 		
-		Conta conta3 = new Conta();
-		conta.saldo = 200;
+		System.out.println(conta2.getSaldo() + " R$");
 		
-		System.out.println(conta.saldo + " R$");
+		Conta conta3 = new Conta(25,5333,cliente);
+		conta.setSaldo(100);;
+		
+		System.out.println(conta.getSaldo()  + " R$");
 		
 		Conta conta4 = conta;
 		
-		System.out.println(conta3.saldo + " R$");
-		System.out.println(conta4.saldo + " R$");
+		System.out.println(conta3.getSaldo()  + " R$");
+		System.out.println(conta4.getSaldo()  + " R$");
 		
 		conta.deposita(200);
 		
-		System.out.println(conta.saldo + " R$");
-		
-		boolean confirmaSaque = conta.saca(150);
-		
-		System.out.println(confirmaSaque);
-		System.out.println(conta.saldo + " R$");
-		
-		boolean confirmaTransferencia = conta.transfere(150, conta2);
-		
-		System.out.println(confirmaTransferencia);
-		System.out.println(conta.saldo + " R$");
-		System.out.println(conta2.saldo + " R$");
-		
-		Cliente cliente = new Cliente();
-		cliente.nome = "Klaiton Ricken";
-		cliente.cpf = 38457204;
-		cliente.profissao = "dev";
-		
-		conta.titular = cliente;
-		
-		System.out.println("Titular: " + conta.titular.nome);
-		System.out.println("CPF: " + conta.titular.cpf);
-		System.out.println("Profissão: " + conta.titular.profissao);
+		System.out.println(conta.getSaldo()  + " R$");
+		System.out.println(conta.saca(150));
+		System.out.println(conta.getSaldo()  + " R$");
+		System.out.println(conta.transfere(150, conta2));
+		System.out.println(conta.getSaldo()  + " R$");
+		System.out.println(conta2.getSaldo()  + " R$");
+		System.out.println("Titular: " + conta.getTitular().getNome());
+		System.out.println("CPF: " + conta.getTitular().getCpf());
+		System.out.println("Profissão: " + conta.getTitular().getProfissao());
 	}
 	
 }
